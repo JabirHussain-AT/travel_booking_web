@@ -9,6 +9,7 @@ import { TripsStaysGrid } from '@/components/TripsStaysGrid';
 import { BlogTeasers } from '@/components/BlogTeasers';
 import AboutUsSSR from '@/components/AboutUs.ssr';
 import TestimonialsSSR from '@/components/Testimonials.ssr';
+import ClientMarker from '@/components/ClientMarker';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +32,8 @@ export default function Page() {
       {/* <BlogTeasers /> */}
       <NearbySection />
       <Footer />
+      {/* Ensures client manifest presence for Vercel while not affecting SEO */}
+      <ClientMarker />
     </main>
   );
 }
