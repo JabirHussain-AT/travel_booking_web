@@ -2,7 +2,6 @@ import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { FeaturedDestinations } from '@/components/FeaturedDestinations';
 import OurSpecialities from "@/components/OurSpecialities";
-import { CategoriesTabs } from '@/components/CategoriesTabs';
 import { NearbySection } from '@/components/NearbySection';
 import { Footer } from '@/components/Footer';
 import { AboutBand } from '@/components/AboutBand';
@@ -10,6 +9,8 @@ import { TripsStaysGrid } from '@/components/TripsStaysGrid';
 import { BlogTeasers } from '@/components/BlogTeasers';
 import AboutUsSSR from '@/components/AboutUs.ssr';
 import TestimonialsSSR from '@/components/Testimonials.ssr';
+
+export const dynamic = 'force-dynamic';
 
 export default function Page() {
   return (
