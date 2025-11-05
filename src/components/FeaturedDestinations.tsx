@@ -5,22 +5,22 @@ const destinations = [
   {
     slug: 'wayanad',
     name: 'Wayanad',
-    image: 'https://images.unsplash.com/photo-1563738066387-c2abdbbd3061?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1607054931379-95e37fc6684b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687'
   },
   {
     slug: 'munnar',
     name: 'Munnar',
-    image: 'https://images.unsplash.com/photo-1530032099965-1993a4b9ad1a?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://plus.unsplash.com/premium_photo-1697730334419-fba83fe143b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687'
   },
   {
     slug: 'coorg',
     name: 'Coorg',
-    image: 'https://images.unsplash.com/photo-1617814074383-6b6564a5bc2a?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1569996980833-901b5cd2eb70?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1935'
   },
   {
     slug: 'alleppey',
     name: 'Alleppey',
-    image: 'https://images.unsplash.com/photo-1563293941-669ce8d2dc83?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://media.istockphoto.com/id/2152760789/photo/kerala-backwaters-with-palms.jpg?s=2048x2048&w=is&k=20&c=6zUddoaMuMoiIxPpn4aYZ4lGxk5p-QPvw19-nsxIE6s='
   }
 ];
 
@@ -29,7 +29,7 @@ export function FeaturedDestinations() {
     <section className="mt-16 sm:mt-24">
       <div className="container">
         <div className="flex items-end justify-between">
-          <h2 className="text-lg sm:text-2xl font-bold">Featured Destinations</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">Featured Destinations</h2>
           <Link href="/destinations" className="text-brand text-sm">View all</Link>
         </div>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
