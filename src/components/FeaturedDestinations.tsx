@@ -27,7 +27,7 @@ const destinations = [
 export function FeaturedDestinations() {
   return (
     <section className="mt-16 sm:mt-24">
-      <div className="container">
+      <div className="container id=destinations">
         <div className="flex items-end justify-between">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">Featured Destinations</h2>
           <Link href="/destinations" className="text-brand text-sm">View all</Link>

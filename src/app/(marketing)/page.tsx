@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer';
 import { AboutBand } from '@/components/AboutBand';
 import { TripsStaysGrid } from '@/components/TripsStaysGrid';
 import { BlogTeasers } from '@/components/BlogTeasers';
+import AboutUs from '@/components/AboutUs';
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <AboutBand />
       <FeaturedDestinations />
       <OurSpecialities />
+      <AboutUs />
       {/* anchor aliases so hero buttons can address different hashes */}
       {/* <div id="stays" />
       <div id="things-to-do" />

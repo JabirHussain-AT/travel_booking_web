@@ -42,7 +42,7 @@ export function Hero() {
           <div className="marquee select-none w-full">
             <div className="marquee__track">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="marquee__item text-[6vw] font-serif  leading-none tracking-tight">
+                <div key={i} className="marquee__item text-[10vw] font-serif sm:text-[7vw] leading-none tracking-tight">
                   <button onClick={() => onNav("stays")} className="hover:text-brand transition-colors">
                     Stays
                   </button>
@@ -70,7 +70,10 @@ export function Hero() {
         {/* Bottom-left row: short text + rotating circular download icon */}
         <div className="absolute left-0 right-0 bottom-6 sm:bottom-8">
           <div className="container flex items-center justify-start gap-4">
-            <p className="max-w-xs text-white text-sm sm:text-base font-light leading-relaxed animate-slideUp opacity-0" style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}>
+            <p
+              className="max-w-xs text-white text-sm sm:text-base font-light leading-relaxed animate-slideUp opacity-0"
+              style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}
+            >
               Your gateway to unforgettable trips and stays.
               <br />
               Let's travel together!
@@ -112,8 +115,8 @@ export function Hero() {
         {/* Centered bottom light gray down arrow */}
         <div className="absolute left-0 right-0 bottom-6 sm:bottom-8 flex items-center justify-center">
           <button
-            aria-label="Scroll to explore"
-            onClick={() => onNav("stays")}
+            aria-label="Scroll down"
+            onClick={() => window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" })}
             className="text-gray-300 hover:text-gray-200 transition"
           >
             <svg
