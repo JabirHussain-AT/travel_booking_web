@@ -8,10 +8,8 @@ import { Footer } from '@/components/Footer';
 import { AboutBand } from '@/components/AboutBand';
 import { TripsStaysGrid } from '@/components/TripsStaysGrid';
 import { BlogTeasers } from '@/components/BlogTeasers';
-import AboutUs from '@/components/AboutUs';
-import Testimonials from '@/components/Testimonials';
-
-export const dynamic = 'force-dynamic';
+import AboutUsSSR from '@/components/AboutUs.ssr';
+import TestimonialsSSR from '@/components/Testimonials.ssr';
 
 export default function Page() {
   return (
@@ -21,8 +19,8 @@ export default function Page() {
       <AboutBand />
       <FeaturedDestinations />
       <OurSpecialities />
-      <AboutUs />
-      <Testimonials />
+      <AboutUsSSR />
+      <TestimonialsSSR />
       {/* anchor aliases so hero buttons can address different hashes */}
       {/* <div id="stays" />
       <div id="things-to-do" />
