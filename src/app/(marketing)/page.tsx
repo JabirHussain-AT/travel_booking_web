@@ -11,6 +11,8 @@ import { BlogTeasers } from '@/components/BlogTeasers';
 import AboutUs from '@/components/AboutUs';
 import Testimonials from '@/components/Testimonials';
 
+export const dynamic = 'force-dynamic';
+
 export default function Page() {
   return (
     <main>
