@@ -95,3 +95,18 @@ html {
 }
 .animate-slide-out-left { animation: slide-out-left 240ms ease-in both; }
 
+/* fade in up animation for stats */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 600ms ease-out both;
+}
+
