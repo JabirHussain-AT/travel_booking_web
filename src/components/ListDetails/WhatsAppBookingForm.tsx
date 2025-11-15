@@ -14,9 +14,16 @@ interface Room {
 interface WhatsAppBookingFormProps {
   selectedRooms: Room[];
   isPackage?: boolean;
+  title?: string;
+  location?: string;
 }
 
-export const WhatsAppBookingForm = ({ selectedRooms, isPackage = false }: WhatsAppBookingFormProps) => {
+export const WhatsAppBookingForm = ({
+  selectedRooms,
+  title,
+  location,
+  isPackage = false,
+}: WhatsAppBookingFormProps) => {
   const { data: session } = useSession();
   const [adults, setAdults] = useState(1);
   const [kids, setKids] = useState(0);
@@ -74,25 +81,44 @@ export const WhatsAppBookingForm = ({ selectedRooms, isPackage = false }: WhatsA
       selectedRooms.length > 0
         ? selectedRooms
             .map((r, i) => {
-              const price = r.price || (r.rate ? parseInt(r.rate.replace(/[^\d]/g, "")) : 0);
+              const price =
+                r.price ||
+                (r.rate ? parseInt(r.rate.replace(/[^\d]/g, "")) : 0);
               const duration = r.duration ? ` (${r.duration})` : "";
-              return `${i + 1}. ${r.name}${duration} - ₹${price.toLocaleString()}`;
+              return `${i + 1}. ${
+                r.name
+              }${duration} - ₹${price.toLocaleString()}`;
             })
             .join("\n")
-        : isPackage ? "No specific package selected" : "No specific room selected";
+        : isPackage
+        ? "No specific package selected"
+        : "No specific room selected";
 
     const itemType = isPackage ? "Package(s)" : "Room(s)";
-    const userEmail = session?.user?.email ? `\nEmail: ${session.user.email}` : "";
-    const loyaltyPointsInfo = session?.user ? `\n\n💎 Check your loyalty points: ${loyaltyLink}` : "";
-    
-    const message = `Hello! I would like to book this ${isPackage ? "trip" : "stay"}
-    
+    const userEmail = session?.user?.email
+      ? `\nEmail: ${session.user.email}`
+      : "";
+    const loyaltyPointsInfo = session?.user
+      ? `\n\n💎 Check your loyalty points: ${loyaltyLink}`
+      : "";
+
+    const message = `Hello! I would like to book this ${
+      isPackage ? "trip" : "stay"
+    }
+
+Name : ${title || "Not specified"}
+Location : ${location || "Not specified"}
+
 Selected ${itemType}:
 ${selectedItemText}
 
 Adults: ${adults}
 Kids: ${kids}
-${!isPackage ? `Check-in: ${checkIn}\nCheck-out: ${checkOut}` : `Travel Date: ${checkIn || "To be selected"}`}${userEmail}${loyaltyPointsInfo}
+${
+  !isPackage
+    ? `Check-in: ${checkIn}\nCheck-out: ${checkOut}`
+    : `Travel Date: ${checkIn || "To be selected"}`
+}${userEmail}${loyaltyPointsInfo}
 
 Please confirm availability and total price.`;
 
@@ -118,12 +144,19 @@ Please confirm availability and total price.`;
           </h4>
           <ul className="space-y-1 text-sm text-gray-700">
             {selectedRooms.map((r) => {
-              const price = r.price || (r.rate ? parseInt(r.rate.replace(/[^\d]/g, "")) : 0);
+              const price =
+                r.price ||
+                (r.rate ? parseInt(r.rate.replace(/[^\d]/g, "")) : 0);
               const duration = r.duration ? ` (${r.duration})` : "";
               return (
                 <li key={r.id} className="flex justify-between">
-                  <span>{r.name}{duration}</span>
-                  <span className="font-semibold">₹{price.toLocaleString()}</span>
+                  <span>
+                    {r.name}
+                    {duration}
+                  </span>
+                  <span className="font-semibold">
+                    ₹{price.toLocaleString()}
+                  </span>
                 </li>
               );
             })}
@@ -158,7 +191,9 @@ Please confirm availability and total price.`;
       {/* Dates – improved for mobile */}
       {isPackage ? (
         <div className="flex flex-col">
-          <label className="text-gray-700 font-medium text-sm">Travel Date</label>
+          <label className="text-gray-700 font-medium text-sm">
+            Travel Date
+          </label>
           <input
             type="date"
             min={todayDate}
@@ -170,7 +205,9 @@ Please confirm availability and total price.`;
       ) : (
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex flex-col flex-1 min-w-0">
-            <label className="text-gray-700 font-medium text-sm">Check-in</label>
+            <label className="text-gray-700 font-medium text-sm">
+              Check-in
+            </label>
             <input
               type="date"
               min={todayDate}
@@ -181,7 +218,9 @@ Please confirm availability and total price.`;
           </div>
 
           <div className="flex flex-col flex-1 min-w-0">
-            <label className="text-gray-700 font-medium text-sm">Check-out</label>
+            <label className="text-gray-700 font-medium text-sm">
+              Check-out
+            </label>
             <input
               type="date"
               min={todayDate}

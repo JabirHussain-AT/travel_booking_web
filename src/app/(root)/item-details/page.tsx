@@ -5,7 +5,7 @@ import PriceSection from "@/components/ListDetails/PriceSection";
 import ReviewsSection from "@/components/ListDetails/ReviewsSection";
 import RoomsSection from "@/components/ListDetails/RoomsSection";
 import BookingSidebar from "@/components/ListDetails/ListingDetailsClient";
-import { Star, Car, Hotel, Utensils, Mountain, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -16,9 +16,9 @@ const AdditionalDetailItem = ({ detail }: { detail: any }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Only render if heading exists and has content
-  const hasContent = 
-    (detail.type === 'description' && detail.description?.trim()) ||
-    (detail.type === 'points' && detail.points?.length > 0);
+  const hasContent =
+    (detail.type === "description" && detail.description?.trim()) ||
+    (detail.type === "points" && detail.points?.length > 0);
 
   if (!detail.heading?.trim() || !hasContent) {
     return null;
@@ -42,18 +42,20 @@ const AdditionalDetailItem = ({ detail }: { detail: any }) => {
       </button>
       {isExpanded && (
         <div className="px-4 pb-4 pt-2 border-t border-gray-200">
-          {detail.type === 'description' && detail.description && (
+          {detail.type === "description" && detail.description && (
             <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
               {detail.description}
             </p>
           )}
-          {detail.type === 'points' && detail.points && detail.points.length > 0 && (
-            <ul className="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
-              {detail.points.map((point: string, pointIndex: number) => (
-                <li key={pointIndex}>{point}</li>
-              ))}
-            </ul>
-          )}
+          {detail.type === "points" &&
+            detail.points &&
+            detail.points.length > 0 && (
+              <ul className="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
+                {detail.points.map((point: string, pointIndex: number) => (
+                  <li key={pointIndex}>{point}</li>
+                ))}
+              </ul>
+            )}
         </div>
       )}
     </div>
@@ -79,13 +81,13 @@ const ListingDetailsContent = () => {
       try {
         const encodedStayId = encodeURIComponent(stayId);
         const res = await fetch(`/api/stays/${encodedStayId}`);
-        
+
         if (res.ok) {
           const data = await res.json();
           setStayData(data.data);
         } else {
           const errorData = await res.json();
-          console.error('[item-details] Error response:', errorData);
+          console.error("[item-details] Error response:", errorData);
         }
       } catch (error) {
         console.error("[item-details] Error fetching stay data:", error);
@@ -96,10 +98,6 @@ const ListingDetailsContent = () => {
 
     fetchStayData();
   }, [stayId]);
-
-
-
-
 
   if (loading) {
     return (
@@ -114,10 +112,14 @@ const ListingDetailsContent = () => {
 
   if (!stayData) {
     const handleWhatsAppSupport = () => {
-      if (typeof window !== 'undefined') {
-        const text = `Hi Tripeloo! I need help finding a stay. Stay ID: ${stayId || 'N/A'}`;
-        const url = `https://wa.me/918089909386?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
+      if (typeof window !== "undefined") {
+        const text = `Hi Tripeloo! I need help finding a stay. Stay ID: ${
+          stayId || "N/A"
+        }`;
+        const url = `https://wa.me/918089909386?text=${encodeURIComponent(
+          text
+        )}`;
+        window.open(url, "_blank");
       }
     };
 
@@ -159,7 +161,7 @@ const ListingDetailsContent = () => {
             >
               Go Back
             </button>
-            
+
             <button
               onClick={handleWhatsAppSupport}
               className="w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
@@ -170,14 +172,16 @@ const ListingDetailsContent = () => {
                 className="w-5 h-5"
                 fill="currentColor"
               >
-                <path d="M19.11 6.18A9.8 9.8 0 0 0 5.56 20.73l-1 3.69a.8.8 0 0 0 1 1l3.69-1A9.8 9.8 0 1 0 19.11 6.18m-3.38 16.9a8.1 8.1 0 0 1-4.1-1.12l-.29-.18-2.43.66.65-2.43-.19-.29a8.16 8.16 0 1 1 6.35 3.36"/>
-                <path d="M13.59 10.87c-.21-.46-.44-.47-.64-.48h-.55a1 1 0 0 0-.72.34 3 3 0 0 0-.9 2.23 5.17 5.17 0 0 0 1.08 2.76 11.78 11.78 0 0 0 3.6 3.6 8.25 8.25 0 0 0 2.76 1.08c1 .25 1.9.08 2.63-.54a2.3 2.3 0 0 0 .75-1.5c.06-.16.06-.3 0-.42s-.19-.14-.4-.23l-1.22-.59c-.2-.09-.34-.14-.49.11s-.57.71-.7.86-.26.18-.48.07a6.7 6.7 0 0 1-2-1.23 9 9 0 0 1-1.68-2.09c-.13-.23 0-.35.09-.47s.2-.24.29-.37a1.56 1.56 0 0 0 .2-.33.39.39 0 0 0 0-.37c-.06-.11-.49-1.19-.67-1.62"/>
+                <path d="M19.11 6.18A9.8 9.8 0 0 0 5.56 20.73l-1 3.69a.8.8 0 0 0 1 1l3.69-1A9.8 9.8 0 1 0 19.11 6.18m-3.38 16.9a8.1 8.1 0 0 1-4.1-1.12l-.29-.18-2.43.66.65-2.43-.19-.29a8.16 8.16 0 1 1 6.35 3.36" />
+                <path d="M13.59 10.87c-.21-.46-.44-.47-.64-.48h-.55a1 1 0 0 0-.72.34 3 3 0 0 0-.9 2.23 5.17 5.17 0 0 0 1.08 2.76 11.78 11.78 0 0 0 3.6 3.6 8.25 8.25 0 0 0 2.76 1.08c1 .25 1.9.08 2.63-.54a2.3 2.3 0 0 0 .75-1.5c.06-.16.06-.3 0-.42s-.19-.14-.4-.23l-1.22-.59c-.2-.09-.34-.14-.49.11s-.57.71-.7.86-.26.18-.48.07a6.7 6.7 0 0 1-2-1.23 9 9 0 0 1-1.68-2.09c-.13-.23 0-.35.09-.47s.2-.24.29-.37a1.56 1.56 0 0 0 .2-.33.39.39 0 0 0 0-.37c-.06-.11-.49-1.19-.67-1.62" />
               </svg>
               Chat with Support
             </button>
 
             <div className="pt-4 border-t border-gray-200">
-              <p className="text-sm text-gray-500 mb-2">Need immediate assistance?</p>
+              <p className="text-sm text-gray-500 mb-2">
+                Need immediate assistance?
+              </p>
               <a
                 href="tel:+918089909386"
                 className="text-[#E51A4B] hover:text-[#C4163F] font-medium text-sm"
@@ -192,20 +196,23 @@ const ListingDetailsContent = () => {
   }
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: stayData.currency || 'INR',
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: stayData.currency || "INR",
       maximumFractionDigits: 0,
     }).format(price);
   };
 
-  const savings = stayData?.originalPrice 
-    ? stayData.originalPrice - stayData.startingPrice 
+  const savings = stayData?.originalPrice
+    ? stayData.originalPrice - stayData.startingPrice
     : 0;
 
   return (
     <div className="mx-0 pt-11 sm:mx-[10%] relative">
-      <ListCarousel carouselImages={stayData.carouselImages || []} coverImage={stayData.coverImage} />
+      <ListCarousel
+        carouselImages={stayData.carouselImages || []}
+        coverImage={stayData.coverImage}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex flex-col lg:flex-row justify-between gap-8">
           {/* LEFT CONTENT */}
@@ -263,9 +270,11 @@ const ListingDetailsContent = () => {
                 </h2>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 text-gray-700 text-sm sm:text-base">
-                  {stayData.properties.map((property: string, index: number) => (
-                    <div key={index}>{property}</div>
-                  ))}
+                  {stayData.properties.map(
+                    (property: string, index: number) => (
+                      <div key={index}>{property}</div>
+                    )
+                  )}
                 </div>
               </div>
             )}
@@ -283,57 +292,76 @@ const ListingDetailsContent = () => {
                 💡 Select your preferred room type to continue booking
               </div>
 
-              <RoomsSection 
-                rooms={stayData.rooms || []} 
-                onRoomSelect={(rooms) => setSelectedRooms(rooms)} 
+              <RoomsSection
+                rooms={stayData.rooms || []}
+                onRoomSelect={(rooms) => setSelectedRooms(rooms)}
               />
             </div>
 
             {/* Price Section */}
             <div className="mb-5">
-              <PriceSection 
-                includes={stayData.includes || []} 
-                excludes={stayData.excludes || []} 
+              <PriceSection
+                includes={stayData.includes || []}
+                excludes={stayData.excludes || []}
               />
             </div>
 
             {/* Additional Details - Expandable */}
-            {stayData.additionalDetails && stayData.additionalDetails.length > 0 && (() => {
-              const validDetails = stayData.additionalDetails.filter((detail: any) => {
-                const hasHeading = detail.heading?.trim();
-                const hasContent = 
-                  (detail.type === 'description' && detail.description?.trim()) ||
-                  (detail.type === 'points' && detail.points?.length > 0);
-                return hasHeading && hasContent;
-              });
-              
-              return validDetails.length > 0 ? (
-                <div className="px-4 sm:px-6 mb-5">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Additional Details</h2>
-                  <div className="space-y-4">
-                    {validDetails.map((detail: any, index: number) => (
-                      <AdditionalDetailItem key={index} detail={detail} />
-                    ))}
+            {stayData.additionalDetails &&
+              stayData.additionalDetails.length > 0 &&
+              (() => {
+                const validDetails = stayData.additionalDetails.filter(
+                  (detail: any) => {
+                    const hasHeading = detail.heading?.trim();
+                    const hasContent =
+                      (detail.type === "description" &&
+                        detail.description?.trim()) ||
+                      (detail.type === "points" && detail.points?.length > 0);
+                    return hasHeading && hasContent;
+                  }
+                );
+
+                return validDetails.length > 0 ? (
+                  <div className="px-4 sm:px-6 mb-5">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                      Additional Details
+                    </h2>
+                    <div className="space-y-4">
+                      {validDetails.map((detail: any, index: number) => (
+                        <AdditionalDetailItem key={index} detail={detail} />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : null;
-            })()}
+                ) : null;
+              })()}
 
             {/* Location */}
             <div className="px-4 sm:px-6 mb-5">
-              <LocationSection 
-                location={stayData.location} 
-                destinationName={stayData.destinationName || stayData.destinationSlug} 
+              <LocationSection
+                location={stayData.location}
+                destinationName={
+                  stayData.destinationName || stayData.destinationSlug
+                }
               />
             </div>
 
             {/* Mobile Booking Sidebar - Above Reviews */}
-            <div id="mobile-booking-form" ref={bookingRef} data-booking-form className="md:hidden mb-5">
+            <div
+              id="mobile-booking-form"
+              ref={bookingRef}
+              data-booking-form
+              className="md:hidden mb-5"
+            >
               <BookingSidebar
                 selectedRooms={selectedRooms}
                 title={stayData.name}
+                location={stayData.destinationName}
                 price={`${formatPrice(stayData.startingPrice)}/-`}
-                oldPrice={stayData.originalPrice ? `${formatPrice(stayData.originalPrice)}/-` : ""}
+                oldPrice={
+                  stayData.originalPrice
+                    ? `${formatPrice(stayData.originalPrice)}/-`
+                    : ""
+                }
                 savings={savings > 0 ? `${formatPrice(savings)}/-` : ""}
               />
             </div>
@@ -342,7 +370,9 @@ const ListingDetailsContent = () => {
             {stayData && (
               <div className="px-4 sm:px-6 mb-5">
                 <ReviewsSection
-                  itemId={stayData._id?.toString() || stayData.id || stayId || ""}
+                  itemId={
+                    stayData._id?.toString() || stayData.id || stayId || ""
+                  }
                   itemType="stay"
                 />
               </div>
@@ -354,29 +384,35 @@ const ListingDetailsContent = () => {
             <BookingSidebar
               selectedRooms={selectedRooms}
               title={stayData.name}
+              location={stayData.destinationName}
               price={formatPrice(stayData.startingPrice)}
-              oldPrice={stayData.originalPrice ? formatPrice(stayData.originalPrice) : ""}
+              oldPrice={
+                stayData.originalPrice
+                  ? formatPrice(stayData.originalPrice)
+                  : ""
+              }
               savings={savings > 0 ? formatPrice(savings) : ""}
               className="w-full lg:w-[350px]"
             />
           </div>
         </div>
       </div>
-
     </div>
   );
 };
 
 const ListingDetails = () => {
   return (
-    <Suspense fallback={
-      <div className="mx-0 pt-11 sm:mx-[10%] relative flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E51A4B] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+    <Suspense
+      fallback={
+        <div className="mx-0 pt-11 sm:mx-[10%] relative flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E51A4B] mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <ListingDetailsContent />
     </Suspense>
   );
