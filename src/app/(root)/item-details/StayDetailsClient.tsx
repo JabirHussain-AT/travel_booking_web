@@ -71,9 +71,10 @@ const AdditionalDetailItem = ({ detail }: { detail: any }) => {
 interface StayDetailsClientProps {
   stayData: any;
   stayId: string;
+  destination: string;
 }
 
-export default function StayDetailsClient({ stayData, stayId }: StayDetailsClientProps) {
+export default function StayDetailsClient({ stayData, stayId, destination }: StayDetailsClientProps) {
   const [selectedRooms, setSelectedRooms] = useState<any[]>([]);
   const bookingRef = useRef<HTMLDivElement | null>(null);
 
@@ -289,6 +290,9 @@ export default function StayDetailsClient({ stayData, stayId }: StayDetailsClien
                 price={`${formatPrice(stayData.startingPrice)}/-`}
                 oldPrice={stayData.originalPrice ? `${formatPrice(stayData.originalPrice)}/-` : ""}
                 savings={savings > 0 ? `${formatPrice(savings)}/-` : ""}
+                destination={destination || stayData.destinationName || stayData.destinationSlug}
+                itemType="stay"
+                itemLocation={stayData.location || stayData.destinationName || stayData.destinationSlug}
               />
             </div>
 
@@ -310,6 +314,9 @@ export default function StayDetailsClient({ stayData, stayId }: StayDetailsClien
               oldPrice={stayData.originalPrice ? formatPrice(stayData.originalPrice) : ""}
               savings={savings > 0 ? formatPrice(savings) : ""}
               className="w-full lg:w-[350px]"
+              destination={destination || stayData.destinationName || stayData.destinationSlug}
+              itemType="stay"
+              itemLocation={stayData.location || stayData.destinationName || stayData.destinationSlug}
             />
           </div>
         </div>

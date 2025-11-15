@@ -72,9 +72,10 @@ const AdditionalDetailItem = ({ detail }: { detail: any }) => {
 interface TripDetailsClientProps {
   tripData: any;
   tripId: string;
+  destination: string;
 }
 
-export default function TripDetailsClient({ tripData, tripId }: TripDetailsClientProps) {
+export default function TripDetailsClient({ tripData, tripId, destination }: TripDetailsClientProps) {
   const [selectedPackages, setSelectedPackages] = useState<Package[]>([]);
   const bookingRef = useRef<HTMLDivElement | null>(null);
 
@@ -273,6 +274,9 @@ export default function TripDetailsClient({ tripData, tripId }: TripDetailsClien
                 oldPrice={tripData.originalPrice && selectedPackages.length === 0 ? `${formatPrice(tripData.originalPrice)}/-` : ""}
                 savings={savings > 0 && selectedPackages.length === 0 ? `${formatPrice(savings)}/-` : ""}
                 isPackage={true}
+                destination={destination || tripData.destinationName}
+                itemType="trip"
+                itemLocation={tripData.location || tripData.destinationName}
               />
             </div>
 
@@ -301,6 +305,9 @@ export default function TripDetailsClient({ tripData, tripId }: TripDetailsClien
               savings={savings > 0 && selectedPackages.length === 0 ? formatPrice(savings) : ""}
               className="w-full lg:w-[350px]"
               isPackage={true}
+              destination={destination || tripData.destinationName}
+              itemType="trip"
+              itemLocation={tripData.location || tripData.destinationName}
             />
           </div>
         </div>

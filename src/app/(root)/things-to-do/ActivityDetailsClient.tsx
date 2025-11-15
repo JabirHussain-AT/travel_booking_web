@@ -76,9 +76,10 @@ const AdditionalDetailItem = ({ detail }: { detail: any }) => {
 interface ActivityDetailsClientProps {
   activityData: any;
   activityId: string;
+  destination: string;
 }
 
-export default function ActivityDetailsClient({ activityData, activityId }: ActivityDetailsClientProps) {
+export default function ActivityDetailsClient({ activityData, activityId, destination }: ActivityDetailsClientProps) {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 

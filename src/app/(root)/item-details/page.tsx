@@ -119,6 +119,7 @@ async function getStayData(stayId: string) {
 export default async function StayDetailsPage({ searchParams }: { searchParams: Promise<{ stay?: string; destination?: string }> }) {
   const params = await searchParams;
   const stayId = params.stay;
+  const destination = params.destination || '';
 
   if (!stayId) {
     return (
@@ -130,7 +131,7 @@ export default async function StayDetailsPage({ searchParams }: { searchParams: 
           </div>
         </div>
       }>
-        <StayDetailsClient stayData={null} stayId="" />
+        <StayDetailsClient stayData={null} stayId="" destination="" />
       </Suspense>
     );
   }
@@ -146,7 +147,7 @@ export default async function StayDetailsPage({ searchParams }: { searchParams: 
         </div>
       </div>
     }>
-      <StayDetailsClient stayData={stayData} stayId={stayId} />
+      <StayDetailsClient stayData={stayData} stayId={stayId} destination={destination} />
     </Suspense>
   );
 }

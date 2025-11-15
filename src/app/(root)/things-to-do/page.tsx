@@ -119,6 +119,7 @@ async function getActivityData(activityId: string) {
 export default async function ActivityDetailsPage({ searchParams }: { searchParams: Promise<{ 'things-to-do'?: string; destination?: string }> }) {
   const params = await searchParams;
   const activityId = params['things-to-do'];
+  const destination = params.destination || '';
 
   if (!activityId) {
     return (
@@ -130,7 +131,7 @@ export default async function ActivityDetailsPage({ searchParams }: { searchPara
           </div>
         </div>
       }>
-        <ActivityDetailsClient activityData={null} activityId="" />
+        <ActivityDetailsClient activityData={null} activityId="" destination="" />
       </Suspense>
     );
   }
@@ -146,7 +147,7 @@ export default async function ActivityDetailsPage({ searchParams }: { searchPara
         </div>
       </div>
     }>
-      <ActivityDetailsClient activityData={activityData} activityId={activityId} />
+      <ActivityDetailsClient activityData={activityData} activityId={activityId} destination={destination} />
     </Suspense>
   );
 }
